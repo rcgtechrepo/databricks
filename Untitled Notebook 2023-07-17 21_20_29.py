@@ -1,5 +1,16 @@
 # Databricks notebook source
+# MAGIC %sql
+# MAGIC CACHE SELECT VendorID, tpep_pickup_datetime FROM my_permanent_table_name  WHERE VendorID > 0; 
+# MAGIC
+# MAGIC CACHE TABLE my_permanent_table_name OPTIONS ('storageLevel' 'DISK_ONLY') SELECT * FROM my_permanent_table_name;
+# MAGIC
+
+# COMMAND ----------
+
 print(sc._jvm.java.util.Random().nextInt(10))
+new_dataframe_name = _sqldf
+display(new_dataframe_name)
+new_dataframe_name.printSchema()
 
 # COMMAND ----------
 
