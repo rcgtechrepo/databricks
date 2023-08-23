@@ -1,14 +1,13 @@
 # Databricks notebook source
-# MAGIC %%pyspark
-# MAGIC spark.sql("DROP TABLE default.test")
-# MAGIC spark.sql("CREATE TABLE IF NOT EXISTS default.test (id Int, name String) USING Parquet LOCATION '/synfsname/parquet/'")
-# MAGIC
-# MAGIC values = [(1, "left"),(2, "right"),(3,"center")]
-# MAGIC df = sqlContext.createDataFrame(values,['id','name'])
-# MAGIC
-# MAGIC df.write.mode('overwrite').format('parquet').saveAsTable('default.test')
-# MAGIC df = spark.sql("SELECT * FROM default.test")
-# MAGIC df.show(100)
+spark.sql("DROP TABLE IF EXISTS default.test")
+spark.sql("CREATE TABLE IF NOT EXISTS default.test (id Int, name String) USING Parquet LOCATION '/synfsname/parquet/'")
+
+values = [(1, "left"),(2, "right"),(3,"center")]
+df = sqlContext.createDataFrame(values,['id','name'])
+
+df.write.mode('overwrite').format('parquet').saveAsTable('default.test')
+df = spark.sql("SELECT * FROM default.test")
+df.show(100)
 
 # COMMAND ----------
 
